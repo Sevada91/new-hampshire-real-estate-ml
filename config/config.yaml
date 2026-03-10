@@ -32,6 +32,38 @@ data_split:
     shuffle: null
     random_state: null
 
+feature_roles:
+
+  numerical:
+    continuous:
+      - sqft
+    binary_numerical: []
+    discrete:
+      - stories
+      - beds
+      - baths
+      - baths_full
+      - baths_full_calc
+      - garage
+
+  categorical:
+    ordinal: []
+    nominal:
+      - type
+    binary_categorical:
+      - sub_type
+
+  text:
+    - text
+  
+  datetime: []
+  high_cardinality: []
+  drop: []
+
+  preprocessing:
+    numerical: []
+    categorical: []
+
 target_analysis:
   target_column: listPrice
   type_detected: continuous
