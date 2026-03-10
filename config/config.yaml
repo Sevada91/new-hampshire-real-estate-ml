@@ -18,6 +18,20 @@ data_quality:
 data_leakage:
   checked: true
 
+data_split:
+  method: train_test_split # Kfold will be use later
+
+  test_size: 0.2
+  random_state: 42
+  shuffle: true
+
+  cross_validation:
+    enabled: false # will add later
+    type: null
+    n_split: null
+    shuffle: null
+    random_state: null
+
 target_analysis:
   target_column: listPrice
   type_detected: continuous
