@@ -14,6 +14,7 @@ data_quality:
   duplicates_removed: true
 
   missing_values_detected: true
+  data_type_issues_detected: false
 
 data_leakage:
   checked: true
@@ -50,7 +51,7 @@ feature_roles:
     ordinal: []
     nominal:
       - type
-    binary_categorical:
+    binary:
       - sub_type
 
   text:
@@ -60,8 +61,34 @@ feature_roles:
   high_cardinality: []
   drop: []
 
-  preprocessing:
-    numerical: []
+preprocessing:
+
+  numerical:
+    imputation_strategy: median
+    scaling:
+      required_for:
+        - linear_models
+        - knn
+        - svm
+      method: standard_scaler
+    skew_handling:
+      default_rule: no_transform
+      apply_log_transform_if_skew_gt: 1
+
+  categorical:
+    imputation_strategy: most_frequent
+
+    encoding:
+      nominal: one_hot
+      binary: label
+
+  overrides:
+    numerical:
+      log_transform:
+        - sqft
+      investigate:
+        - garage
+
     categorical: []
 
 target_analysis:
